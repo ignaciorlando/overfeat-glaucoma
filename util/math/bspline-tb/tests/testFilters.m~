@@ -1,0 +1,70 @@
+function test_suite = testFilters %#ok<STOUT>
+  initTestSuite;
+end
+
+
+function testFilterFIRmirror() %#ok<DEFNU>
+     s = repmat([1,2,3,4,1,2,3,4],[1,5]);
+     c = bspline3dtrans(s);
+     b = bsplineNkernel(-1:1,3,1);
+     srec1 = filterFIRmirror(b,c);
+     srec2 = conv([c(2) c c(end-1)],b,'valid');
+     
+     assertVectorsAlmostEqual(srec1,srec2);
+end
+
+function testReverse1ordAp() %#ok<DEFNU>
+    s = repmat([1,2,3,4,1,2,3,4],[1,10]);
+    
+    c1 = filterAPrev1ord(s,0.5);
+    c2 = reverse1ordAp_simple(s,0.5);
+    
+    assertVectorsAlmostEqual(c1,c2);
+    
+end
+
+function testForward1ordAp() %#ok<DEFNU>
+    s = [1,2,3,4,1,2,3,4];
+    
+    c1 = filterAPfwd1ord(s, 0.5);
+    c2 = forward1ordAp_simple(s, 0.5);
+    
+    assertVectorsAlmostEqual(c1, c2);
+    
+end
+
+function testSymm2ordAp() %#ok<DEFNU>
+    s = [1,2,3,4,1,2,3,4];
+    
+    z1 = -2 + sqrt(3);
+    c1 = 6;
+    
+    y1 = c1*symm2ordAp_simple(s, z1);
+    y2 = c1*filterAPsym2ord(s, z1);
+    
+    assertVectorsAlmostEqual(y1, y2);
+end
+
+function test_u2N_FIR_coefs() %#ok<DEFNU>
+    ntail = 7;
+    % u2N FIR coefs is valid for N odd
+    for N = 1:2:7
+
+        [u2N,c] = u2N_FIR_coefs(N);
+        % ntail can be wider than actual support
+        bs1 = bsplineNkernel(-ntail:ntail,N,1);
+        bs2_ref = bsplineNkernel(-ntail:ntail,N,2);
+        
+        % Keep non-zero elements
+        bs1(bs1==0)=[];
+        bs2_ref(bs2_ref==0)=[];
+        
+        % Test that the u2N FIR filter fulfills the two-scale relation
+        
+        bs2_test = c*conv(u2N, bs1);
+        bs2_test = bs2_test(1:length(bs2_ref));
+        
+        assertVectorsAlmostEqual(bs2_ref, bs2_test);
+    end
+
+end
