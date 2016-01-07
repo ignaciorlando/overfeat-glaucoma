@@ -1,15 +1,7 @@
 
-This software package corresponds to the implementation of preprocessing and experiments used in our IEEE Signal Processing Letters paper.
+This software package corresponds to the implementation of preprocessing and experiments used in our submitted IEEE Signal Processing Letters paper.
 
-If you use it, please include the following citation:
-
-@article{orlando2016convolutional,
-  title={Convolutional Neural Network Transfer for Automated Glaucoma Identification},
-  author={Orlando, Jos{\'e} Ignacio and Prokofyeva, Elena and del Fresno, Mariana and Blaschko, Matthew B.}
-  journal={Signal Processing Letters, IEEE},
-  year={2016},
-  publisher={IEEE}
-}
+Paper is under revision, so please wait for using this code in your research until we have the citation you have to include.
 
 The following external libraries are also used in this software package.
 If you use any of these, please include the corresponding citations in your article or
@@ -38,14 +30,6 @@ vesselSegmentation
   pages={634--641},
   year={2014},
   publisher={Springer}
-}
-
- @journal{orlando2015discriminatively,
-  title={A discriminatively trained fully connected conditional random field model for blood vessel segmentation in fundus images},
-  author={Orlando, Jos{\'e} Ignacio and Prokofyeva, Elena and Blaschko, Matthew},
-  journal={Transactions on Biomedical Engineering, IEEE},
-  year={2016},
-  publisher={IEEE}
 }
 
 Additionally, this method uses third-party code for computing features:
