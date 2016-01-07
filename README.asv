@@ -26,7 +26,7 @@ HOW TO USE THIS CODE
     cd folder/where/images/are
 
     ii) Downsample all the images in the folder
-    mogrify -resize 231x231 -background black -gravity center -format png -extent 231x231 *.<image_extensions>
+    mogrify -resize 231x231 -backgro
 
 2) EXTRACT FEATURES FROM THE IMAGES IN THE FOLDER
 
@@ -34,9 +34,7 @@ HOW TO USE THIS CODE
 
 3) GENERATE MAT FILE FROM THE FEATURES FILES
 
-    i) Modify and run featureMapFromFiles.
-
-4) RUN EXPERIMENTS USING FILES IN experiments FOLDER.
+    i) 
 
 ########################################################################
 
