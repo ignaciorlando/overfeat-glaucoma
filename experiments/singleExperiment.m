@@ -23,42 +23,45 @@ else
 end
 
 % Use CDR
-options.useCDR = 1;
+options.useCDR = 0;
 
 % Type of images
-options.typeImage = 'original';
-%options.typeImage = 'vesselInpainted';
+%options.typeImage = 'original';
+options.typeImage = 'vesselInpainted';
 %options.typeImage = 'vessels';
 
 % Different preprocessings of the images. Warning: all will be explored!
 %shapes = {'square', 'clahe'};
-shapes = {'square'};
+%shapes = {'square'};
 %shapes = {'clahe'};
+shapes = {'green','green-clahe'};
 %shapesNames = {'Regular crop', 'Regular crop + CLAHE'};
-shapesNames = {'Regular crop'};
+shapesNames = {'Green band', 'Green band + CLAHE'};
 %shapesNames = {'Regular crop + CLAHE'};
 
 % Regularizers. Warning: all will be explored!
-%regularizers = {'L1','L2'};
+regularizers = {'L1','L2'};
 %regularizers = {'L1'};
-regularizers = {'L2'};
+%regularizers = {'L2'};
 
 % Augmentation strategies. Warning: all will be explored!
-%augmented = {'', '-aug-90', '-aug'};
+augmented = {'', '-aug-90', '-aug'};
 %augmented = {'-aug'};
-augmented = {''};
-%augmentedNames = {'Not augmented', 'Flipped and rotated 90º', 'Flipped and rotated 45º'};
+%augmented = {''};
+augmentedNames = {'Not augmented', 'Flipped and rotated 90º', 'Flipped and rotated 45º'};
 %augmentedNames = {'Flipped and rotated 45º'};
-augmentedNames = {'Not augmented'};
+%augmentedNames = {'Not augmented'};
 
 % Zooms. Warning: all will be explored!
-%dataUsed = {'down','fov-crop-down','od-down','only-od-down'};
+dataUsed = {'down','fov-crop-down','od-down','only-od-down'};
 %dataUsed = {'down'};
-dataUsed = {'fov-crop-down'};
+%dataUsed = {'down'};
+%dataUsed = {'fov-crop-down'};
 %dataUsed = {'only-od-down'};
-%dataUsedNames = {'Original image', 'FOV cropped', 'Optic disc + surrounding tissue', 'Only optic disc'};
+dataUsedNames = {'Original image', 'FOV cropped', 'Optic disc + surrounding tissue', 'Only optic disc'};
+%dataUsedNames = {'Optic disc + surrounding tissue', 'Only optic disc'};
 %dataUsedNames = {'Original image'};
-dataUsedNames = {'FOV cropped'};
+%dataUsedNames = {'FOV cropped'};
 %dataUsedNames = {'Only optic disc'};
 
 % Measure to optimize

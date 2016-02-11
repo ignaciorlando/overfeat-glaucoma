@@ -1,12 +1,12 @@
 
 % Augment a data set
 rootFolder = 'C:\SharedFolderWithUbuntu';
-datasetName = 'Drishti-VC';
-%zoomslist = {'im-down', 'im-fov-crop-down', 'im-od-down', 'im-only-od-down'};
-zoomslist = {'im-down'};
+datasetName = 'Drishti';
+zoomslist = {'im-down', 'im-fov-crop-down', 'im-od-down', 'im-only-od-down'};
+%zoomslist = {'im-down'};
 angles = [45, 90];
 %angles = [45];
-preproType = 'square';
+preproType = 'green';
 
 for i = 1 : length(zoomslist)
     for j = 1 : length(angles)

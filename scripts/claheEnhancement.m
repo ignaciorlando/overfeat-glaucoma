@@ -3,12 +3,12 @@
 clear; clc;
 
 % Dataset name
-datasetNames = {'im','im-fov-crop','im-od','im-only-od'};
+datasetNames = {'im-down-aug-90','im-fov-crop-down-aug-90','im-od-down-aug-90','im-only-od-down-aug-90'};
 % datasetNames = {'im-fov-crop-down', 'im-fov-crop-down-aug', 'im-fov-crop-down-aug-90', ...
 %     'im-od-down', 'im-od-down-aug', 'im-od-down-aug-90', ...
 %     'im-only-od-down-aug','im-only-od-down-aug-90'};
 % Root path
-rootPath = 'C:\SharedFolderWithUbuntu\Drishti\clahe';
+rootPath = 'C:\SharedFolderWithUbuntu\Drishti\green-clahe';
 
 % For each of the data sets
 for i = 1 : length(datasetNames)

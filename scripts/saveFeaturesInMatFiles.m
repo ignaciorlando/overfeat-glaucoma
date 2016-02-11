@@ -2,14 +2,16 @@
 root_features = 'C:\SharedFolderWithUbuntu';
 root_output = 'C:\Users\USUARIO\Dropbox\RetinalImaging\Code\kSupport-CNN-glaucoma\_resources\data';
 % Types of images
-imageTypes = {'down'};%, 'fov-crop-down', 'od-down', 'only-od-down'};
-augTypes = {'', '-aug-90', '-aug'};
+%imageTypes = {'down', 'fov-crop-down', 'od-down', 'only-od-down'};
+imageTypes = {'fov-crop-down'};
+%augTypes = {'', '-aug-90', '-aug'};
+augTypes = {'-aug'};
 %shapes = {'rectangle','square','clahe'};
-shapes = {'square'};
+shapes = {'green', 'green-clahe'};
 dataset = 'Drishti';
-%vesselState = 'original';
+vesselState = 'original';
 %vesselState = 'vesselInpainted';
-vesselState = 'vessels';
+%vesselState = 'vessels';
 
 
 for s = 1 : length(shapes)

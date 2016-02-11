@@ -40,6 +40,4 @@ for i = 1 : length(otherCropsPath)
     end
     
 end
-
-if strcmp(shape,'square')
     
