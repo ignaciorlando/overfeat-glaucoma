@@ -13,7 +13,8 @@ function [segmentations, qualityMeasures] = getBunchSegmentations2(config, data,
     segmentations = cell(size(data.masks));
     
     % Preallocate quality measures
-    if (isfield(data, 'labels'))
+    %if (isfield(data, 'labels'))
+    if (config.thereAreLabelsInTheTestData)
         qualityMeasures.se = zeros(length(data.masks),1);
         qualityMeasures.sp = zeros(length(data.masks),1);
         qualityMeasures.acc = zeros(length(data.masks),1);
@@ -38,7 +39,8 @@ function [segmentations, qualityMeasures] = getBunchSegmentations2(config, data,
         % Print the name of the image being processed
         fprintf('Segmenting image number %i/%i\n', i, length(data.masks));
 
-        if (isfield(data, 'labels')) && (~isempty(data.labels))
+        if (config.thereAreLabelsInTheTestData)
+        %if (isfield(data, 'labels')) && (~isempty(data.labels))
 
             % Get image, mask, annotations, ground truth and features
             mask = data.masks{i};

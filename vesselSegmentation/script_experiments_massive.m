@@ -1,34 +1,46 @@
 
 warning('off','all');
 
+
+[ret, hostname] = system('hostname');
+hostname = strtrim(lower(hostname));
+% Lab computer
+if strcmp(hostname, 'orlando-pc')
+    % Root dir where the data sets are located
+    rootDatasets = 'C:\_vessels\';
+    % Root folder where the results are going to be stored
+    rootResults = 'C:\_vessels\results';
+elseif strcmp(hostname, 'animas')
+    % Root dir where the data sets are located
+    rootDatasets = '/home/ignacioorlando/nacho-research/vessel2016characterization/_vessels/';
+    % Root folder where the results are going to be stored
+    rootResults = '/home/ignacioorlando/nacho-research/vessel2006characterization/_vessels/tests';
+else
+    % Root dir where the data sets are located
+    rootDatasets = 'C:\_vessels\';
+    % Root folder where the results are going to be stored
+    rootResults = 'C:\_vessels\results';
+end
+
+
 % Datasets names
 datasetsNames = {...
-    %'DRIVE-DRISHTI' ...
-    'DRIVE-GlaucomaDB' ...
+    'DRIVE-MESSIDORsmall' ...
 };
-thereAreLabelsInTheTestData = [...
-    0 ...
-];
+thereAreLabelsInTheTestData = 0 * zeros(size(datasetsNames));
 
 % Flag indicating if the value of C is going to be tuned according to the
 % validation set
-learnC = 0;
+learnC = 1;
 % CRF versions that are going to be evaluated
 crfVersions = {'fully-connected'};
 
 % C values
 cValue = 10^2;
 
-% Root dir where the data sets are located
-rootDatasets = 'C:\_cnn\';
-
-% Root folder where the results are going to be stored
-rootResults = 'C:\Users\USUARIO\Dropbox\RetinalImaging\Code\kSupport-CNN-glaucoma\_resources\vessels\GlaucomaDB';
-%rootResults = 'G:\Dropbox\RetinalImaging\Code\kSupport-CNN-glaucoma\_resources\vessels\DRISHTI\en_casa';
-
-
 
 % For each of the data sets
+results = cell(length(datasetsNames), length(crfVersions));
 for experiment = 1 : length(datasetsNames)
 
     % For each version of the CRF
@@ -44,7 +56,7 @@ for experiment = 1 : length(datasetsNames)
                                            );
         config.thereAreLabelsInTheTestData = thereAreLabelsInTheTestData(experiment);
         % Run vessel segmentation!
-        runVesselSegmentation(config)
+        results{experiment,crfver} = runVesselSegmentation(config);
         
     end
     

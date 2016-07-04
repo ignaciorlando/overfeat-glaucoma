@@ -2,18 +2,27 @@
 % Data set name
 dataset = 'Drishti';
 
+% Identify the machine
+[ret, hostname] = system('hostname');
+hostname = strtrim(lower(hostname));
+
 % Lab computer
-if strcmp(get(com.sun.security.auth.module.NTSystem,'DomainSID'), 'S-1-5-21-2417359367-2741391723-3780137234')
+if strcmp(hostname, 'orlando-pc')
     % Folder where the features and labels are
-    rootFolder = 'C:\Users\USUARIO\Dropbox\RetinalImaging\Code\kSupport-CNN-glaucoma\_resources\data';
+    rootFolder = 'C:\_glaucoma\_resources\data';
     % Folder where the results will be saved
-    resultsFolder = 'C:\Users\USUARIO\Dropbox\RetinalImaging\Writing\cnn2015paper\results';
-else
+    resultsFolder = 'C:\_glaucoma\results';
+elseif strcmp(hostname, 'animas')
     % Folder where the features and labels are
-    rootFolder = 'G:\Dropbox\RetinalImaging\Code\kSupport-CNN-glaucoma\_resources\data';
+    rootFolder = '/home/ignacioorlando/nacho-research/cnn2015glaucoma/_resources/data';
     % Folder where the results will be saved
-    resultsFolder = 'G:\Dropbox\RetinalImaging\Writing\cnn2015paper\results';
+    resultsFolder = '/home/ignacioorlando/nacho-research/cnn2015glaucoma/results';
 end
+
+% Indicate type of image to be used
+options.typeImage = 'original';
+% Indicate if the CDR will be included
+options.useCDR = false;
 
 % Different preprocessings of the images. Warning: all will be explored!
 shapes = {'rectangle', 'square', 'clahe'};
@@ -21,10 +30,10 @@ shapesNames = {'Irregular crop', 'Regular crop', 'Regular crop + CLAHE'};
 
 % Regularizers. Warning: all will be explored!
 %regularizers = {'L1','L2','k-support'};
-regularizers = {'L2'};
+regularizers = {'L1', 'L2'};
 
 % Augmentation strategies. Warning: all will be explored!
-augmented = {'no', '-aug-90', '-aug'};
+augmented = {'', '-aug-90', '-aug'};
 augmentedNames = {'Not augmented', 'Flipped and rotated 90º', 'Flipped and rotated 45º'};
 
 % Zooms. Warning: all will be explored!
@@ -44,7 +53,7 @@ options.verbose = false;
 % Type of experiment: Multiple trials
 options.experimentType = 'multiple-trials';
 % Number of folds
-options.numTrials = 1000;
+options.numTrials = 100;
 % Training fraction
 options.trainingFraction = 0.7;
 

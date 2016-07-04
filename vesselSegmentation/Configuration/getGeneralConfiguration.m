@@ -13,8 +13,9 @@ function [config] = getGeneralConfiguration(config)
     config.preprocessing.preprocess = 1;
     config.preprocessing.fakepad_extension = ceil( 50 * config.scale_factor );
     config.preprocessing.erosion = 5;
-    config.preprocessing.winSize = 40 * config.scale_factor;
-    config.preprocessing.enhancement = 'no';%'clahe';
+    config.preprocessing.winSize = ceil(40 * config.scale_factor);
+    config.preprocessing.enhancement = 'clahe';
+    %config.preprocessing.enhancement = 'no';%'clahe';
 
     % ---------------------------------------------------------------------
     % Model selection metric
@@ -30,19 +31,21 @@ function [config] = getGeneralConfiguration(config)
         options.Nguyen2013.w = ceil(15 * config.scale_factor);   
         options.Nguyen2013.step = ceil(2 * config.scale_factor);
     % Soares
+        %options.Soares2006.scales = ceil([2 2*sqrt(2) 3*sqrt(2) 4*sqrt(2) 3] * config.scale_factor);
         options.Soares2006.scales = ceil([2 3 4 5] * config.scale_factor);
+        %options.Soares2006.scales = ceil([2 3] * config.scale_factor);
     % Zana
-        options.Zana2001.l = 9 * config.scale_factor;
+        options.Zana2001.l = ceil(9 * config.scale_factor);
         options.Zana2001.winsize = ceil(7 * config.scale_factor);
         options.Zana2001.Intensities = options.Intensities;
     % Azzopardi
         options.Azzopardi2015.symmetric.sigma0 = 3 * config.scale_factor;
         options.Azzopardi2015.symmetric.sigma = 2.4 * config.scale_factor;
-        options.Azzopardi2015.symmetric.len = (0:2:8) * config.scale_factor;
+        options.Azzopardi2015.symmetric.len = ceil((0:2:8) * config.scale_factor);
         options.Azzopardi2015.symmetric.alpha = 0.7 * config.scale_factor;
         options.Azzopardi2015.asymmetric.sigma0 = 2 * config.scale_factor;
         options.Azzopardi2015.asymmetric.sigma = 1.8 * config.scale_factor;
-        options.Azzopardi2015.asymmetric.len = (0:2:22) * config.scale_factor;
+        options.Azzopardi2015.asymmetric.len = ceil((0:2:22) * config.scale_factor);
         options.Azzopardi2015.asymmetric.alpha = 0.1 * config.scale_factor;
         
     % RESULTS ------------------------------------------------------------

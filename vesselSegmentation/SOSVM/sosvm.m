@@ -18,8 +18,8 @@ function [model, config, state] = sosvm(config, patterns, labels, oldstate)
     % Include additional parameters
     config.SOSVM.convergenceThreshold = 0.001;
     config.SOSVM.formulationType = 'margin';
-    config.SOSVM.maxIterations = 50;
-    config.SOSVM.minIterations = 15;
+    config.SOSVM.maxIterations = 40;
+    config.SOSVM.minIterations = 10;
     
     % Initially, w has 0s
     config.SOSVM.w = zeros(config.SOSVM.sizePsi,1);
@@ -82,7 +82,7 @@ end
 
 function assertPositivity(param, model)
     if ~isempty(param.SOSVM.posindx)
-        assert(sum(model.w(param.SOSVM.posindx) >= ones(length(param.SOSVM.posindx), 1) * -1.0e-4) == length(param.SOSVM.posindx), 'Positivity contraint violated by ');
+        assert(sum(model.w(param.SOSVM.posindx) >= ones(length(param.SOSVM.posindx), 1) * -1.0e-6) == length(param.SOSVM.posindx), 'Positivity contraint violated by ');
     end
 end
 

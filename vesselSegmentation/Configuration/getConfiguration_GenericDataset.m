@@ -15,24 +15,7 @@ function [config] = getConfiguration_GenericDataset(datasetName, datasetPath, re
     config.dataset = datasetName;
 
     % Configure paths
-    config.dataset_path = datasetPath;
-    
-    % Results path
-    if (~strcmp(resultsPath, 'training'));
-        resultsPath = strcat(resultsPath, filesep, crfVersion);
-        if (~exist(resultsPath,'dir'))
-            config.output_path = resultsPath;
-            mkdir(resultsPath);
-        end
-    end
-    config.resultsPath = resultsPath;
-    
-    % output path
-    outputpath = strcat(resultsPath, filesep, 'model_selection');
-    if (~exist(outputpath,'dir'))
-        config.output_path = outputpath;
-        mkdir(outputpath);
-    end
+    config.dataset_path = datasetPath;   
     
     % image, labels and masks original folder
     config.training_data_path = strcat(config.dataset_path, filesep, 'training');
@@ -40,11 +23,11 @@ function [config] = getConfiguration_GenericDataset(datasetName, datasetPath, re
     config.test_data_path = strcat(config.dataset_path, filesep, 'test');
 
     % ---------------------------------------------------------------------
-    % Scale factor
-    if (strcmp(datasetName,'DRIVE-DRISHTI'))
+    % Scale factor   
+    if (strcmp(datasetName,'DRIVE-MESSIDORsmall'))
         config.scale_factor = 1;
-    elseif (strcmp(datasetName,'CHASEDB1-DRISHTI'))
-        config.scale_factor = 1.549618321;
+    elseif (strcmp(datasetName,'DRIVE-MESSIDORsmall-scale'))
+        config.scale_factor = 1.221374046;
     else
         config.scale_factor = 1;
     end
@@ -74,7 +57,7 @@ function [config] = getConfiguration_GenericDataset(datasetName, datasetPath, re
     % ---------------------------------------------------------------------
     % SOSVM configuration
     config.C.initialPower = 0;
-    config.C.lastPower = 4;
+    config.C.lastPower = 3;
     if (~config.learn.C)
         config.C.value = cValue;
     end
@@ -85,6 +68,8 @@ function [config] = getConfiguration_GenericDataset(datasetName, datasetPath, re
     config.compute_scores = 1;
     
     % ---------------------------------------------------------------------
+    config.features.saveFeatures = 0;
+    
     % Unary features
     config.features.unary.unaryFeatures = zeros(config.features.numberFeatures, 1);
     config.features.unary.unaryFeatures(1) = 1;     % Nguyen
@@ -100,6 +85,27 @@ function [config] = getConfiguration_GenericDataset(datasetName, datasetPath, re
         %config.features.pairwise.pairwiseFeatures(2) = 1;  % Soares
         config.features.pairwise.pairwiseFeatures(3) = 1;  % Zana
         %config.features.pairwise.pairwiseFeatures(4) = 1;  % Azzopardi
+    end
+    
+    
+    % Results path
+    if (~strcmp(resultsPath, 'training'));
+        if strcmp(crfVersion, 'up')
+            resultsPath = strcat(resultsPath, filesep, crfVersion, filesep, 'uf=', mat2str(config.features.unary.unaryFeatures));
+        else
+            resultsPath = strcat(resultsPath, filesep, crfVersion, filesep, 'uf=', mat2str(config.features.unary.unaryFeatures), '---pf=', mat2str(config.features.pairwise.pairwiseFeatures));
+        end
+        if (~exist(resultsPath,'dir'))
+            config.output_path = resultsPath;
+            mkdir(resultsPath);
+        end
+    end
+    config.resultsPath = resultsPath;
+    
+    % output path
+    config.output_path = strcat(resultsPath);
+    if (~exist(config.output_path,'dir'))
+        mkdir(config.output_path);
     end
 
 end

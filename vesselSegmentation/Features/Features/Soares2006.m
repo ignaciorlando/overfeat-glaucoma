@@ -26,7 +26,10 @@ else
     scales = options.scales;
 end
 
-I = (double(I) - min(I(:))) / (max(I(:)) - min(I(:)));
+if (~isfield(options, 'dontpreprocess'))
+    I = double(I) - double(medfilt2(uint8(I), [50 50]));
+    I = (double(I) - min(I(:))) / (max(I(:)) - min(I(:)));
+end
 
 % Inverting so vessels become brighter.
 I = 1 - I;

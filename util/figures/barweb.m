@@ -132,7 +132,7 @@ else
 	end
 	
 	% Plot bars
-	handles.bars = bar(barvalues);
+	handles.bars = bar(barvalues, 'EdgeColor', 'black');
 	hold on
 	if ~isempty(bw_legend) && ~strcmp(legend_type, 'axis')
 		handles.legend = legend(bw_legend, 'location', 'southeast', 'fontsize',12);

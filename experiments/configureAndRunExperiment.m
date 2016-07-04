@@ -11,7 +11,7 @@ function configureAndRunExperiment(dataset, rootFolder, resultsFolder, options)
     
     % Path where the features are stored
     % rootFolder/dataset/features/original/square/zoomtype-aug/feat-zoomtype-aug
-    featuresFilePath = strcat(rootFolder, filesep, dataset, filesep, 'features', filesep, options.typeImage, filesep, options.shape,filesep, options.dataUsed, options.augmented ,filesep, 'feat-', options.dataUsed, options.augmented , '.mat');
+    featuresFilePath = fullfile(rootFolder, dataset, 'features', options.typeImage, options.shape, strcat(options.dataUsed, options.augmented), strcat('feat-', options.dataUsed, options.augmented , '.mat'));
     if (options.useCDR)
         featuresFilePathCDR = strcat(rootFolder, filesep, dataset, filesep, 'features', filesep, 'cdrs.mat');
     end

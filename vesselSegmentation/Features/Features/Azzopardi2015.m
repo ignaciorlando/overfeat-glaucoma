@@ -100,6 +100,7 @@ function [resp] = Azzopardi2015(I, mask, unary, options)
 
     % Filters application
     I = (I - min(I(:))) / (max(I(:)) - min(I(:)));
+    %I = adapthisteq(I);
     I = 1 - I;
 
     % Apply the symmetric B-COSFIRE to the input I
@@ -111,15 +112,8 @@ function [resp] = Azzopardi2015(I, mask, unary, options)
     resp2 = resp2{1};
 
     % Final response
-    unary = 0;
-    if (unary)
-        resp = zeros(size(resp1, 1), size(resp1, 2), 2);
-        resp(:,:,1) = rescaleImage(resp1 .* mask, 0, 255);
-        resp(:,:,2) = rescaleImage(resp2 .* mask, 0, 255);
-    else
-        resp = resp1 + resp2;
-        resp = rescaleImage(resp .* mask, 0, 255);
-    end
+    resp = resp1 + resp2;
+    resp = rescaleImage(resp .* mask, 0, 255);
     
 
 end

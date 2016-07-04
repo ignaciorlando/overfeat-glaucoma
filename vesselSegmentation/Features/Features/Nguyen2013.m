@@ -1,5 +1,5 @@
 
-function [features] = Nguyen2013(I, mask, unary, options)
+function [features, bestResponsesAngles] = Nguyen2013(I, mask, unary, options)
 % Nguyen2013 Compute the Nguyen et al features
 % I = Nguyen2013(I, mask, unary, options)
 % OUTPUT: features: Nguyen et al features
@@ -8,7 +8,7 @@ function [features] = Nguyen2013(I, mask, unary, options)
 %        unary: a boolean flag indicating if the feature is unary or
 %        pairwise
 %        options: a struct containing the parameters to compute the feature
-
+    
     % Set parameters
     if (~exist('options','var'))
         options.w = 15;
