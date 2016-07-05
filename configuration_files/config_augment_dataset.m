@@ -2,7 +2,8 @@
 % root folder
 root_folder = 'C:\SharedFolderWithUbuntu';
 % data set name
-dataset_name = 'Drishti';
+%dataset_name = 'Drishti';
+dataset_name = 'GlaucomaDB';
 % zoom types
 zooms_list = {'im', 'im-fov-crop', 'im-od', 'im-only-od'};
 % angles

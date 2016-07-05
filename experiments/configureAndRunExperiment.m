@@ -1,8 +1,4 @@
 function configureAndRunExperiment(dataset, rootFolder, resultsFolder, options)
-%
-%
-%
-%
     
     % ---------------------------------------------------------------------
     % Determining the paths
@@ -11,19 +7,21 @@ function configureAndRunExperiment(dataset, rootFolder, resultsFolder, options)
     
     % Path where the features are stored
     % rootFolder/dataset/features/original/square/zoomtype-aug/feat-zoomtype-aug
-    featuresFilePath = fullfile(rootFolder, dataset, 'features', options.typeImage, options.shape, strcat(options.dataUsed, options.augmented), strcat('feat-', options.dataUsed, options.augmented , '.mat'));
+    featuresFilePath = fullfile(rootFolder, dataset, 'features', options.preprocessing, strcat('im', options.dataUsed, options.augmented), strcat('features.mat'));
     if (options.useCDR)
-        featuresFilePathCDR = strcat(rootFolder, filesep, dataset, filesep, 'features', filesep, 'cdrs.mat');
+        featuresFilePathCDR = fullfile(rootFolder, dataset, 'features', 'cdrs.mat');
     end
+    
     % Path where the labels are stored
-    labelsFilePath = strcat(rootFolder, filesep, dataset, filesep, 'labels.mat');
+    labelsFilePath = fullfile(rootFolder, dataset, 'labels.mat');
+    
     % Path where the output is going to be saved
     % resultsFolder/dataset/experimentType/original/square/zoomtype-aug/regularizer
     withCDR = '';
     if (options.useCDR)
         withCDR = '-withCDR';
     end
-    saveResultsPath = strcat(resultsFolder, filesep, dataset, filesep,options.experimentType, filesep, options.typeImage, filesep, options.shape, filesep, options.dataUsed, options.augmented, withCDR, filesep, options.regularizer);
+    saveResultsPath = fullfile(resultsFolder, dataset, options.experimentType, options.preprocessing, strcat(options.dataUsed, options.augmented), withCDR, options.regularizer);
     if (exist(saveResultsPath, 'dir') == 0)
         mkdir(saveResultsPath);
     end

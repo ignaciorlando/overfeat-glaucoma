@@ -39,7 +39,7 @@ for idx_dataset = 1 : length(datasets_names)
                 % initialize the feature matrix
                 features = zeros(length(image_names), cnn_dimensionality);
                 % for each image
-                for i = 1 : length(image_names)
+                parfor i = 1 : length(image_names)
 
                     % load and preprocess an image
                     im = imread(fullfile(current_image_path, image_names{i})) ;
@@ -62,8 +62,19 @@ for idx_dataset = 1 : length(datasets_names)
 
                 end
                 
+                if (strcmp(current_aug, ''))
+                    info.names = image_names;
+                    info.numFeatures = 1;
+                elseif (strcmp(current_aug, '-aug-90'))
+                    info.names = image_names;
+                    info.numFeatures = 8;
+                elseif (strcmp(current_aug, '-aug'))
+                    info.names = image_names;
+                    info.numFeatures = 16;
+                end
+                
                 % output features
-                save(fullfile(current_output_path, 'features.mat'), 'features');
+                save(fullfile(current_output_path, 'features.mat'), 'features', 'info');
                 
             end
             

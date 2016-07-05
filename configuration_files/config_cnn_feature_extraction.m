@@ -12,7 +12,8 @@ cnn_type = 'vgg-s'; cnn_dimensionality = 4096;
 
 % Image configuration -----------------------------------------------------
 % data set name
-datasets_names = {'Drishti', 'GlaucomaDB'}; 
+%datasets_names = {'Drishti', 'GlaucomaDB'}; 
+datasets_names = {'GlaucomaDB'}; 
 % root path
 root_path = 'C:\SharedFolderWithUbuntu';
 % output path
