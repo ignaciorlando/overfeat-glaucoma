@@ -16,9 +16,29 @@ cnn_type = 'vgg-s'; cnn_dimensionality = 4096;
 datasets_names = {'Drishti'}; 
 %datasets_names = {'GlaucomaDB'}; 
 % root path
-root_path = 'C:\SharedFolderWithUbuntu';
+
+
+
 % output path
 output_path = 'C:\_glaucoma\_resources\data';
+
+% Lab computer
+if strcmp(hostname, 'orlando-pc')
+    % Folder where the features and labels are
+    root_path = 'C:\SharedFolderWithUbuntu';
+    % Folder where the results will be saved
+    resultsFolder = 'C:\_glaucoma\results';
+elseif strcmp(hostname, 'animas')
+    % Folder where the features and labels are
+    rootFolder = '/home/ignacioorlando/nacho-research/cnn2015glaucoma/_resources/data';
+    % Folder where the results will be saved
+    resultsFolder = '/home/ignacioorlando/nacho-research/cnn2015glaucoma/results';
+end
+
+
+
+
+
 % crop types
 crop_types = { ...
     'im' ...    

@@ -1,6 +1,7 @@
 
 % Data set name
-dataset = 'Drishti';
+%dataset = 'Drishti';
+dataset = 'G
 
 % Identify the machine
 [ret, hostname] = system('hostname');
@@ -19,13 +20,10 @@ elseif strcmp(hostname, 'animas')
     resultsFolder = '/home/ignacioorlando/nacho-research/cnn2015glaucoma/results';
 end
 
-% Indicate type of image to be used
-options.typeImage = 'original';
 % Indicate if the CDR will be included
 options.useCDR = false;
 
 % Different preprocessings of the images. Warning: all will be explored!
-shapesNames = {'Irregular crop', 'Regular crop', 'Regular crop + CLAHE'};
 preprocessings = { ...
     'color'...
     'color-inp' ...
@@ -38,6 +36,18 @@ preprocessings = { ...
     'green-clahe'...
     'green-clahe-inp'...
 };  
+preprocessings_names = { ...
+    'RGB'...
+    'RGB + inpainting' ...
+    'G' ...
+    'G + inpainting' ...
+    'Normalized RGB'...
+    'Normalized RGB + inpainting'...
+    'RGB + CLAHE'...
+    'RGB + CLAHE + inpainting'...
+    'G + CLAHE'...
+    'G + CLAHE + inpainting'...
+};  
 
 % Regularizers. Warning: all will be explored!
 %regularizers = {'L1','L2','k-support'};
@@ -48,8 +58,8 @@ augmented = {'', '-aug-90', '-aug'};
 augmentedNames = {'Not augmented', 'Flipped and rotated 90º', 'Flipped and rotated 45º'};
 
 % Zooms. Warning: all will be explored!
-dataUsed = {'down', 'fov-crop-down', 'od-down' , 'only-od-down'};
-dataUsedNames = {'Original image', 'Cropped FOV', 'OD + surrounding tissue', 'Only OD'};
+dataUsed = {'', 'fov-crop', 'od' , 'only-od'};
+dataUsedNames = {'Original image', 'Cropped FOV', 'Peripapillary area', 'ONH'};
 
 % Measure to optimize
 options.measure = 'auc';
@@ -64,7 +74,7 @@ options.verbose = false;
 % Type of experiment: Multiple trials
 options.experimentType = 'multiple-trials';
 % Number of folds
-options.numTrials = 100;
+options.numTrials = 1;
 % Training fraction
 options.trainingFraction = 0.7;
 

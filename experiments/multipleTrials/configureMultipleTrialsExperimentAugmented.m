@@ -21,11 +21,11 @@ reorganizedFeatures = cell(size(labels));
 reorganizedLabels = cell(size(labels));
 for i = 1 : length(labels)
     % Take the first info.numFeatures(i) images
-    reorganizedFeatures{i} = features(1:info.numFeatures(i), :);
+    reorganizedFeatures{i} = features(1:info.numFeatures(1), :);
     % Remove them from the feature list
-    features(1:info.numFeatures(i), :) = [];
+    features(1:info.numFeatures(1), :) = [];
     % Copy info.numFeatures(i) labels to the cell array
-    reorganizedLabels{i} = ones(info.numFeatures(i),1) * labels(i); 
+    reorganizedLabels{i} = ones(info.numFeatures(1),1) * labels(i); 
 end
 % Reassign the reorganized features and labels
 features = reorganizedFeatures;
