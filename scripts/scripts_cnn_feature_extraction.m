@@ -39,7 +39,7 @@ for idx_dataset = 1 : length(datasets_names)
                 % initialize the feature matrix
                 features = zeros(length(image_names), cnn_dimensionality);
                 % for each image
-                parfor i = 1 : length(image_names)
+                for i = 1 : length(image_names)
 
                     % load and preprocess an image
                     im = imread(fullfile(current_image_path, image_names{i})) ;
@@ -52,7 +52,7 @@ for idx_dataset = 1 : length(datasets_names)
                     end
                     im_ = single(im) ; % note: 0-255 range
                     im_ = imresize(im_, net.meta.normalization.imageSize(1:2)) ;
-                    im_ = bsxfun(@minus, im_, net.meta.normalization.averageImage) ;
+                    %im_ = bsxfun(@minus, im_, net.meta.normalization.averageImage) ;
 
                     % run the CNN-S
                     res = vl_simplenn(net, im_) ;
