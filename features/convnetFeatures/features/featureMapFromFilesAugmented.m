@@ -9,6 +9,14 @@ function [features, info] = featureMapFromFilesAugmented(directory)
     % Get only the names of the folders within the directory
     info.names = filterFolderNames(dir(directory));    
     
+    % If there is no subfolder, organize features
+    if (isempty(info.names))
+        
+        allNames = getMultipleImagesFileNames(directory);
+        
+        
+    end
+    
     % Initialize the array where we will store the number of features per
     % folder
     info.numFeatures = zeros(size(info.names));

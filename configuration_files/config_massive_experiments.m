@@ -1,7 +1,8 @@
 
 % Data set name
-dataset = 'Drishti';
+%dataset = 'Drishti';
 %dataset = 'GlaucomaDB';
+dataset = 'RIM-ONE_r3\left_side';
 
 % Identify the machine
 [ret, hostname] = system('hostname');
@@ -60,13 +61,18 @@ options.useCDR = false;
 %     'RGB + CLAHE'...
 %     'RGB + CLAHE + inpainting'...
 % };   
+% preprocessings = { ...
+%     'color-inp' ...
+% };  
+% preprocessings_names = { ...
+%     'RGB + inpainting' ...
+% };    
 preprocessings = { ...
-    'color-inp' ...
+    'color' ...
 };  
 preprocessings_names = { ...
-    'RGB + inpainting' ...
+    'RGB' ...
 };    
-
 
 % Regularizers. Warning: all will be explored!
 %regularizers = {'L1','L2','k-support'};
@@ -76,18 +82,18 @@ regularizers = {'L2'};
 % Augmentation strategies. Warning: all will be explored!
 %augmented = {'', '-aug-90', '-aug'};
 %augmentedNames = {'Not augmented', 'Flipped and rotated 90º', 'Flipped and rotated 45º'};
-%  augmented = {'-aug-90'};
-%  augmentedNames = {'Flipped and rotated 90º'};
-augmented = {''};
-augmentedNames = {'Not augmented'};
+ augmented = {'-aug-90'};
+ augmentedNames = {'Flipped and rotated 90º'};
+% augmented = {''};
+% augmentedNames = {'Not augmented'};
 
 % Zooms. Warning: all will be explored!
 %dataUsed = {'', '-fov-crop', '-od' , '-only-od'};
 %dataUsedNames = {'Original image', 'Cropped FOV', 'Peripapillary area', 'ONH'};
-%  dataUsed = {'-fov-crop'};
-%  dataUsedNames = {'Cropped FOV'};
-dataUsed = {'-od'};
-dataUsedNames = {'Peripapillary area'};
+ dataUsed = {'-fov-crop'};
+ dataUsedNames = {'Cropped FOV'};
+% dataUsed = {'-od'};
+% dataUsedNames = {'Peripapillary area'};
 
 % Measure to optimize
 options.measure = 'auc';

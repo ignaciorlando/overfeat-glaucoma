@@ -15,6 +15,7 @@ addpath(genpath(fullfile(root,'Util','img'))) ;
 addpath(genpath(fullfile(root,'Util','math'))) ;
 addpath(genpath(fullfile(root,'Util','open'))) ;
 addpath(genpath(fullfile(root,'Util','save'))) ;
+addpath(genpath(fullfile(root,'Util','fov_masks'))) ;
 addpath(fullfile(root,'Util','external','vlfeat','toolbox')) ;
 addpath(genpath(fullfile(root,'Util','external','markSchmidt'))) ;
 vl_setup;

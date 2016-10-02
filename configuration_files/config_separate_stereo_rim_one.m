@@ -1,0 +1,9 @@
+
+input_path = 'C:\Users\USUARIO\Documents\RetinalImageDatasets\RIM-ONE r3';
+
+output_path = 'C:\_glaucoma\datasets\RIM-ONE r3';
+
+subfolders = { ...
+    strcat('Glaucoma and suspects'), ...
+    strcat('Healthy'), ...
+    };

@@ -1,7 +1,8 @@
 
 % Data set
 %dataset = 'Drishti';
-dataset = 'GlaucomaDB';
+%dataset = 'GlaucomaDB';
+
 % Crop images
 %cropType = 'rectangle';
 cropType = 'square';
